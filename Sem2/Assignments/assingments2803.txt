@@ -1,0 +1,155 @@
+#include <stdio.h>
+
+int main(void){
+	int n = 0;
+	int i = 0;
+	int a = 0,b = 1,c;
+	printf("Enter n: ");	
+	scanf("%d",&n);
+
+	while(i <= n){
+		i++;
+		printf("%d ",a);
+		c = a;
+		a += b;
+		b = c;	
+		
+	}
+	
+}
+
+-----------------------------b
+#include <stdio.h>
+#include <math.h>
+int main(void){
+	int i,n,end;
+	printf("Enter number: ");
+	scanf("%d",&n);
+	end = (int) sqrt(n);
+	
+	for(i=2;i <= end;i++){
+		//printf("%d",i);
+		if(n%i == 0){
+			printf("Not Prime");
+			return 0;	
+		}
+	}
+	printf("Prime");
+}
+-----------------------
+#include <stdio.h>
+#include <math.h>
+int len(int n){
+	int i = 1,s = 0;	
+	for(;i <= n;){
+		i *=10;
+		s++; 
+	}
+	return s;	
+}
+int raisetopower(float number,int power){
+    float temp = 1;
+    for(;power>0;power--)
+        temp *= number;
+    return temp;
+}
+int main(void){
+	int n,l,i,total=0,temp;
+	printf("Enter Number:");
+	scanf("%d",&n);
+	temp = n;
+	l = len(n);
+	for(i = 0;i < l;i++){
+		//printf("%d->",n%10);
+		total += raisetopower(n%10,l);
+		//printf("%d ",total);
+		n = n/10;		
+	}
+	
+	if(temp != total){
+		printf("Not");
+	}
+	else{
+		printf("Yes");
+	}
+	
+}
+
+-----------------extra
+
+
+#include <stdio.h>
+
+int main(void){
+	int i,upper,lower;
+	int *isprime = NULL;
+	printf("Enter Lower:");
+	scanf("%d",&lower);
+	printf("Enter Upper:");
+	scanf("%d",&upper);	
+	
+	isprime = malloc(sizeof(int)*1000);
+	for(i = 0;i < upper+1;i++)
+		isprime[i] = 1;
+	for(i=2;i <= upper;i++){
+		if(isprime[i]){
+			//printf("%d ",i);
+			int j;
+			for(j = i;j < upper;){
+				j += i;
+				isprime[j] = 0;
+								
+			}	
+		}
+	}
+	for(i = lower;i < upper;i++){
+		if(isprime[i])
+			printf("%d ",i);
+	}	
+}
+--------------------------e2
+
+#include <stdio.h>
+#include <math.h>
+int len(int n){
+	int i = 1,s = 0;	
+	for(;i <= n;){
+		i *=10;
+		s++; 
+	}
+	return s;	
+}
+int raisetopower(float number,int power){
+    float temp = 1;
+    for(;power>0;power--)
+        temp *= number;
+    return temp;
+}
+int isamstrong(int n){
+	int l,i,total=0,temp;
+	temp = n;
+	l = len(n);
+	for(i = 0;i < l;i++){
+		//printf("%d->",n%10);
+		total += raisetopower(n%10,l);
+		//printf("%d ",total);
+		n = n/10;		
+	}
+	
+	if(temp != total){
+		return 0;
+	}
+	else{
+		return 1;
+	}
+}
+int main(void){
+	int range,i;	
+	printf("Enter Range:");
+	scanf("%d",&range);
+	for(i=0;i <=range;i++){
+		if(isamstrong(i)){
+			printf("%d ",i);
+		}
+	}
+}
