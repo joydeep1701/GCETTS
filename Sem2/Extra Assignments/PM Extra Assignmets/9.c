@@ -1,3 +1,4 @@
+/* Write a program to count number of vowels in a given text */
 #include <stdio.h>
 #include <string.h>
 int isvowel(char c){
@@ -14,14 +15,14 @@ int isvowel(char c){
 		case 85:
 			return 1;
 			break;
-		default: 
+		default:
 			return 0;
 	}
-	
+
 }
 
 int main(void){
-	printf("Input Sentence: ");	
+	printf("Input Sentence: ");
 	char s[50];
 	gets(s);
 	int i,count = 0;
@@ -31,9 +32,9 @@ int main(void){
 			count++;
 			//printf("%c %d\n",s[i],count);
 		//}
-			
+
 	}
 	printf("%d",count);
-	
-	
+
+
 }

@@ -1,14 +1,17 @@
+/* Write a program to read numbers until -1 is encountered & count
+ 	the negative, positive & zeros encountered */
+
 #include <stdio.h>
 
 int main(void){
-	
+
 	int input = 0;
 	int negative = 0;
 	int positive = 0;
 	int zero = 0;
 	do{
 		printf("Enter Number: ");
-		scanf("%d",&input);		
+		scanf("%d",&input);
 		if(input != -1){
 			if(input < 0)
 				negative++;
@@ -19,9 +22,9 @@ int main(void){
 		}
 	}
 	while(input != -1);
-	
+
 	printf("Number of positive number = %d\n",positive);
 	printf("Number of negative number = %d\n",negative);
 	printf("Number of Zero = %d\n",zero);
-	
+
 }

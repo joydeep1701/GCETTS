@@ -1,3 +1,5 @@
+/* Write a program using for loop to calculate factorial of a number using for loop*/
+
 #include <stdio.h>
 
 int main(void){
@@ -8,5 +10,5 @@ int main(void){
 	for(;i <= n;i++)
 		facto *= i;
 	printf("%d",facto);
-	
+
 }

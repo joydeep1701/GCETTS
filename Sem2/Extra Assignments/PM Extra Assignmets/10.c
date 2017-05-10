@@ -1,3 +1,5 @@
+/* Write a program to calculate the sum of first 10 numbers */
+
 #include <stdio.h>
 
 int main(void){

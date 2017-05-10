@@ -1,9 +1,10 @@
-/* Write a program to enter a number from 1 to 7 and display the corresponding day of the week*/
+/* Write a program to enter a number from 1 to 7 and display
+	the corresponding day of the week*/
 
 #include <stdio.h>
 
 int main(void){
-	
+
 	int a;
 	printf("Enter the value of a: ");
 	scanf("%d",&a);

@@ -1,7 +1,12 @@
+/*	Write a program to enter a character & then determine whether it is a Vowel
+		or not
+		[Using switch Case]
+*/
+
 #include <stdio.h>
 
 int main(void){
-	printf("Input a Character");	
+	printf("Input a Character");
 	char c;
 	scanf("%c",&c);
 	switch(c){
@@ -17,8 +22,8 @@ int main(void){
 		case 85:
 			printf("Is Vowel");
 			break;
-		default: 
+		default:
 			printf("Is not Vowel");
 	}
-	
+
 }
