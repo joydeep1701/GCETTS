@@ -1,3 +1,5 @@
+//Write a program to print some patterns
+
 #include <stdio.h>
 
 int main(void){

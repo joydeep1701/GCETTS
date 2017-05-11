@@ -1,3 +1,5 @@
+//Write a program to check whether a number is prime or not
+
 #include <stdio.h>
 #include <math.h>
 int main(void){

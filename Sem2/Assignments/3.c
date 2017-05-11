@@ -1,3 +1,5 @@
+//Write a program to print value & address & sizeof char int float
+
 #include <stdio.h>
 
 int main(void){

@@ -1,3 +1,5 @@
+//Write a program to convert Temperature from Celcius to Farhenheit and vice versa
+
 #include <stdio.h>
 
 int main(void){
@@ -8,7 +10,7 @@ int main(void){
     scanf("%f",&temp);
 
     char type;
-    printf("Input C to convert to Celcius of F to convert to Farhenheit: ");
+    printf("Input C to convert to Celcius or F to convert to Farhenheit: ");
     fflush(stdin);
     scanf("%c",&type);
 

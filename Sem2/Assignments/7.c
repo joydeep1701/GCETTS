@@ -1,3 +1,8 @@
+//Write a program to implement a calculator using switch case[+,-,*,/]
+
+//Note : For a Real calculator check Projects folder
+
+
 #include <stdio.h>
 
 int main(void){

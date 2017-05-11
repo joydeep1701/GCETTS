@@ -1,3 +1,5 @@
+//Write a program to Check a number is amstrong or not
+
 #include <stdio.h>
 #include <math.h>
 int len(int n){
