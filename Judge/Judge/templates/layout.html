@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+        <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <link href="/static/css/Inconsolata.css" rel="stylesheet">
+        <script src="/static/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/static/js/fullscreen.js"></script>
+        <title>{% block title %}{% endblock %} | GCETTSJ</title>
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ url_for('hello') }}">GCETTS Judge</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        {% if session.user_id %}
+                            <ul class="nav navbar-nav">
+                                <li><a href="{{ url_for('hello') }}">Dashboard</a></li>
+                                <li><a href="{{ url_for('hello') }}">Search</a></li>
+                                <li><a href="{{ url_for('hello') }}">History</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+          							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+          							<ul class="dropdown-menu" role="menu">
+            							<li><a href="{{ url_for('hello') }}"><span class="glyphicon glyphicon-wrench"></span> Change Password</a></li>
+            							<li><a href="{{ url_for('hello') }}"><span class="glyphicon glyphicon-plus"></span> Add More Money</a></li>
+        								<li class="divider"></li>
+            							<li><a href="{{ url_for('hello') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+          							</ul>
+        						</li>
+                            </ul>
+                        {% else %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{{ url_for('hello') }}">Log In/Register</a></li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+			<div class="container">
+			{% with messages = get_flashed_messages(with_categories=true) %}
+  				{% if messages %}
+    				<header>
+    					{% for category, message in messages %}
+      					<div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+    					{% endfor %}
+    				</header>
+  				{% endif %}
+			{% endwith %}
+            <main>
+                {% block main %}
+                {% endblock %}
+            </main>
+
+        </div>
+
+    </body>
+
+</html>

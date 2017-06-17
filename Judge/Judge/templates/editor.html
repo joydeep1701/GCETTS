@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% block title %}
+    Editor
+{% endblock %}
+
+{% block head %}
+
+        <style type="text/css" media="screen">
+            #editorContainer {
+                width: 100%;
+                height: 600px;
+                position: relative;
+            }
+
+            #editor {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                font-family: 'Inconsolata', monospace;
+                font-size: 16px;
+            }
+        </style>
+
+
+{% endblock %}
+{% block main %}
+            <div class="row">
+              <div class="col-sm-12" id="pd">
+                <h1>Problem Header</h1>
+                <hr>
+                <p>Problem Defination</p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">Sample Input</div>
+                      <div class="panel-body">Panel Content</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">Sample Output</div>
+                    <div class="panel-body">Panel Content</div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="panel panel-default">
+                     <div class="panel-heading">
+                       <button type="button" class="btn btn-success" onclick="run_code()">
+                         <span class="	glyphicon glyphicon-play"> </span> Run
+                       </button>
+                        <!--  <a type="button" class="btn btn-primary" href="#pd">
+                          <span class="glyphicon glyphicon-file"></span> Problem Defination
+                        </a>
+
+                        <button type="button" class="btn btn-info" onclick="toggleFullScreen()">
+                          <span class="glyphicon glyphicon-fullscreen"> </span> FullScreen
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="">
+                          <span class="glyphicon glyphicon-check"> </span> Check
+                        </button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#message">
+                          <span class="glyphicon glyphicon-comment"> </span> Open Message
+                        </button> -->
+
+                      </div>
+                        <div id="editorContainer" class="panel-body">
+                            <div id="editor">
+
+#include &ltstdio.h&gt
+
+int main(void){
+    char name[20];
+    printf("Your Name:")
+    scanf("%s",name);
+    printf("Hello %s",name);
+    return 0;
+}
+                          </div>
+                      </div>
+                      <script src="/static/js/ide.js"></script>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Input</div>
+                            <div class="panel-body">
+                              <div class="form-group">
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Output</div>
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading" >Compiler Output</div>
+                            <div class="panel-body" id="compiler_output"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h1></h1>
+            </div>
+            <form>
+                <textarea name="txt" style="display: none;"></textarea>
+            </form>
+        </div>
+        <!-- Modal -->
+        <div id="message" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+              </div>
+              <div class="modal-body">
+                <p>Some text in the modal.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Modal -->
+
+{% endblock %}
