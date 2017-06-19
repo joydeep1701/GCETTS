@@ -5,6 +5,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import gettempdir
 import time
 import api
+from werkzeug.datastructures import ImmutableMultiDict
 #from helpers import *
 
 # configure application
@@ -31,15 +32,26 @@ Session(app)
 def hello():
     return render_template('editor.html')
 
-@app.route("/run", methods=["GET", "POST"])
-def run():
+@app.route("/api/compile", methods=["GET", "POST"])
+def apicompile():
     if request.method == "POST":
-        code = request.form.get('code')
+        data = dict(request.form)
+        code = str(data['code'][0])
+        #code = request.form.post('code')
         code_filename = str(time.time())
         stderr = api.compile_code(code,code_filename)
         if stderr == '':
-            return "Nice Code"
+            return code_filename+"|~|"+"0"+"|~|"+"Compilation Successful"
         else:
-            return stderr
+            return code_filename+"|~|"+"1"+"|~|"+stderr
     else:
         return "Invalid Request"
+@app.route("/api/run",methods=["GET","POST"])
+def  apirun():
+    #return "Scheduled to run"
+    if request.method == "POST":
+        id = request.form.get('pid');
+        stdout = api.run_code(id)
+        return stdout
+    else:
+        return "Aw, Something is wrong"

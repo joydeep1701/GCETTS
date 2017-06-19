@@ -27,7 +27,7 @@
 {% endblock %}
 {% block main %}
             <div class="row">
-              <div class="col-sm-12" id="pd">
+              <!-- <div class="col-sm-12" id="pd">
                 <h1>Problem Header</h1>
                 <hr>
                 <p>Problem Defination</p>
@@ -45,13 +45,13 @@
                   </div>
                 </div>
               </div>
-              </div>
+            </div> -->
             </div>
             <div class="row">
                 <div class="col-sm-8">
                     <div class="panel panel-default">
                      <div class="panel-heading">
-                       <button type="button" class="btn btn-success" onclick="run_code()">
+                       <button type="button" class="btn btn-success" onclick="compile_code()">
                          <span class="	glyphicon glyphicon-play"> </span> Run
                        </button>
                         <!--  <a type="button" class="btn btn-primary" href="#pd">
@@ -75,10 +75,10 @@
 #include &ltstdio.h&gt
 
 int main(void){
-    char name[20];
-    printf("Your Name:")
-    scanf("%s",name);
-    printf("Hello %s",name);
+    //char name[20];
+    printf("Your Name:");
+    //scanf("%s",name);
+    //printf("Hello %s",name);
     return 0;
 }
                           </div>
@@ -88,7 +88,7 @@ int main(void){
                 </div>
 
                 <div class="col-sm-4">
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="panel panel-info">
                             <div class="panel-heading">Input</div>
                             <div class="panel-body">
@@ -109,7 +109,7 @@ int main(void){
                             <div class="panel-heading" >Compiler Output</div>
                             <div class="panel-body" id="compiler_output"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row">
@@ -126,9 +126,9 @@ int main(void){
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title" id="modal_head">Modal Header</h4>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" id="modal_body">
                 <p>Some text in the modal.</p>
               </div>
               <div class="modal-footer">

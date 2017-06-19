@@ -34,12 +34,23 @@ def login_required(f):
 
 def compile_code(code,code_filename):
     with cd("./temp"):
-        f = open(code_filename+".c","a+")
+        f = open(code_filename+".c","w")
         f.write(code)
         f.close()
-        p = subprocess.Popen([r"/usr/bin/gcc","-Wall","-o",code_filename,code_filename+".c"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        p = subprocess.Popen([r"/usr/bin/gcc","-lm","-o",code_filename,code_filename+".c"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         stdout,stderr = p.communicate()
         stderr = stderr.decode('utf-8')
         stderr = stderr.split(code_filename+".c:")
         stderr = "".join(stderr)
         return stderr
+def run_code(pid):
+    with cd("./temp"):
+        try:
+            f = open(pid,"r")
+            f.close()
+        except FileNotFoundError:
+            return "Aw, Something went wrong :("
+        p = subprocess.Popen(["./"+pid],shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        stdout,stderr = p.communicate()
+        stdout = stdout.decode('utf-8')
+        return stdout
