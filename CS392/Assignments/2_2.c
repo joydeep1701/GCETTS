@@ -1,8 +1,8 @@
 /**
-* Data Structures Assignment - 2
+* Data Structures Assignment - 3
 * CS 392
-* Problem 1:
-* - Write a C program to create a singly linked list to perform the following operations:
+* Problem 2:
+* - Write a C program to create a singly circular linked list to perform the following operations:
 *    - Insert element
 *    - Delete element
 *    - Search a given element
@@ -12,7 +12,6 @@
 * GCETTS 2017
 *
 **/
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -32,10 +31,10 @@ void show(node* head,int count) {
     printf("[%d,%d]->",i,next->val);
     fflush(stdout);
     next = next->next;
-    if(next == NULL)
+    if(next == head)
       break;
   }
-  printf("NULL\n");
+  printf("HEAD\n");
 
 }
 
@@ -56,10 +55,11 @@ int insert(node** head, int count) {
   }
 
   newNode->val = val;
-  newNode->next = NULL;
+  newNode->next = (*head);
 
   if(*head == NULL) {
     *head = newNode;
+    newNode->next = (*head);
     return count+1;
   }
   else{
@@ -73,17 +73,14 @@ int insert(node** head, int count) {
     }
 
     for (i = 0; i < pos -1; i++) {
-      if(next->next ==  NULL) {
+      if(next->next ==  (*head)) {
         printf("\t[WARN] Value: %d will be inserted at end\n",val);
         break;
       }
       next = next->next;
     }
 
-    if(next != NULL)
-      newNode->next = next->next;
-    else
-      newNode->next = NULL;
+    newNode->next = next->next;
 
     next->next = newNode;
 
@@ -109,18 +106,20 @@ int delete(node** head,int count) {
 
   if(!pos) {
     tmp = (*head);
-    if((*head)->next != NULL)
+    //printf("%d\n",(*head)->next->val );
+    if((*head)->next != (*head))
       (*head) = (*head)->next;
     else
       (*head) = NULL;
 
+    free(tmp);
     return count -1;
   }
   else {
     tmp = next;
     for ( i = 0; i < pos; i++) {
 
-      if(next->next == NULL) {
+      if(next->next == (*head)) {
         printf("\t[ERROR] Index out of range\n");
         return count;
       }
@@ -130,8 +129,8 @@ int delete(node** head,int count) {
     // next is at index to be removed
     // tmp is at previous index
 
-    if(next->next == NULL)
-      tmp->next = NULL;
+    if(next->next == (*head))
+      tmp->next = (*head);
     else
       tmp->next = next->next;
 
@@ -147,7 +146,7 @@ void search(node *head, int count) {
 
   printf("\tSearch Element in List:\n");
 
-  if(next == NULL) {
+  if(next->next == head) {
     printf("\t[ERROR] List is Empty\n");
     return;
   }
@@ -157,11 +156,11 @@ void search(node *head, int count) {
 
   for( i = 0; i < count; i++) {
 
-    if(next == NULL) {
+    if(next->next == head) {
       printf("\tEnd Of List, No Results\n");
       return;
     }
-    
+
     if(next->val == val) {
       printf("\tFound %d at index %d\n",val,i);
       return;
@@ -171,7 +170,7 @@ void search(node *head, int count) {
 
   }
 
-  if(next == NULL) {
+  if(next == head) {
     printf("\tEnd Of List, No Results\n");
     return;
   }

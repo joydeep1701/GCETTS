@@ -2,7 +2,7 @@
 * Data Structures Assignment - 2
 * CS 392
 * Problem 1:
-* - Write a C program to create a singly linked list to perform the following operations:
+* - Write a C program to create a doubly linked list to perform the following operations:
 *    - Insert element
 *    - Delete element
 *    - Search a given element
@@ -20,6 +20,7 @@ typedef struct node_t {
   /* basic node data type */
   int val;
   struct node_t* next;
+  struct node_t* prev;
 } node;
 
 void show(node* head,int count) {
@@ -29,13 +30,15 @@ void show(node* head,int count) {
   printf("\tLinked List\n" );
   printf("\t\tHEAD->");
   for (i = 0; i < count; i++){
-    printf("[%d,%d]->",i,next->val);
+    printf("[%d,%d]",i,next->val);
     fflush(stdout);
     next = next->next;
     if(next == NULL)
       break;
+    else
+      printf("<->");
   }
-  printf("NULL\n");
+  printf("->NULL\n");
 
 }
 
@@ -57,6 +60,7 @@ int insert(node** head, int count) {
 
   newNode->val = val;
   newNode->next = NULL;
+  newNode->prev = NULL;
 
   if(*head == NULL) {
     *head = newNode;
@@ -77,13 +81,18 @@ int insert(node** head, int count) {
         printf("\t[WARN] Value: %d will be inserted at end\n",val);
         break;
       }
+
       next = next->next;
     }
 
-    if(next != NULL)
+    if(next != NULL) {
       newNode->next = next->next;
-    else
+      newNode->prev = next;
+    }
+    else {
       newNode->next = NULL;
+      newNode->prev = next;
+    }
 
     next->next = newNode;
 
@@ -132,8 +141,10 @@ int delete(node** head,int count) {
 
     if(next->next == NULL)
       tmp->next = NULL;
-    else
-      tmp->next = next->next;
+    else {
+        tmp->next = next->next;
+        next->next->prev = tmp;
+    }
 
     free(next);
 
@@ -161,7 +172,7 @@ void search(node *head, int count) {
       printf("\tEnd Of List, No Results\n");
       return;
     }
-    
+
     if(next->val == val) {
       printf("\tFound %d at index %d\n",val,i);
       return;
